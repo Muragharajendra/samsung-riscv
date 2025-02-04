@@ -1,1 +1,1 @@
-# samsung-riscv
+# samsung-riscv Talent Development Program
