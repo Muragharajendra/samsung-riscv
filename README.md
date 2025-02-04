@@ -1,1 +1,1 @@
-# samsung-riscv Talent Development Program
+# Samsung RISC-V Talent Development Program
