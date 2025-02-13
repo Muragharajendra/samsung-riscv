@@ -78,4 +78,18 @@ The Smart Elevator Controller is an embedded system using the VSDsquadron Mini b
 -Ensure smooth elevator movement between floors
 -Demonstrate RISC-V-based real-time automation
 
+## Elevator Working Process
+
+**Initialization:** The elevator is initialized at floor 0, with no target and in an IDLE state.
+
+**Request Handling:** A request is made to move to floor 5.The target floor is set to 5.The direction is set to UP because the current floor (0) is less than the target floor (5).
+
+**Movement:**  The elevator moves floor by floor:The direction is UP, so the elevator increments the current floor by 1 in each iteration.
+After each move, the current floor is printed.
+
+**Reaching the Target:** When the elevator reaches floor 5:
+The direction is set to IDLE.
+The request is cleared.
+The final message is printed indicating that the elevator has reached the target floor.
+This simple model effectively demonstrates the fundamental logic behind an elevator controller.
 
