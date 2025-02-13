@@ -58,3 +58,24 @@ This task involves performing a functional simulation of a given RISC-V Core Ver
  **3. Run Functional Simulation**  
  **4. Capture Waveforms**  
 **5. Documentation to repository**  
+
+###  [Task 5: Smart Elevator Controller Using VSDsquadron Mini](https://github.com/Murghu/samsung-riscv/tree/main/Task%205) 
+
+## Overview
+The Smart Elevator Controller is an embedded system using the VSDsquadron Mini board to efficiently manage elevator operations. It integrates a 16x2 LCD with I2C, a 4x4 keypad, and push buttons for user input and real-time status display. This project demonstrates the automation potential of RISC-V-based controllers in embedded applications.
+
+## Key Features
+-LCD Display for real-time floor and status updates
+-4x4 Keypad for floor selection
+-Push Buttons for manual control
+-I2C Communication for efficient LCD interfacing
+-Embedded C Programming for scalable implementation
+
+## Objectives
+-Develop an elevator control system using VSDsquadron Mini
+-Interface an I2C LCD for status display
+-Implement a keypad-based floor selection system
+-Ensure smooth elevator movement between floors
+-Demonstrate RISC-V-based real-time automation
+
+
