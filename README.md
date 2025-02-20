@@ -93,3 +93,36 @@ The request is cleared.
 The final message is printed indicating that the elevator has reached the target floor.
 This simple model effectively demonstrates the fundamental logic behind an elevator controller.
 
+###  [Task 6: Smart Elevator Controller Implementation on VSDsquadron Mini](https://github.com/Murghu/samsung-riscv/tree/main/Task%206)
+
+
+## Overview
+
+This task involves implementing the Smart Elevator Controller on the VSDsquadron Mini processor by writing and executing an embedded C program. The system efficiently manages elevator operations through real-time control logic, interfacing seamlessly with hardware components such as an I2C LCD display, a 4x4 keypad, and push buttons. This project highlights the practical application of RISC-V-based controllers in real-time embedded automation.
+
+## Implementation Details
+
+### Initialization
+
+- The elevator starts at floor 0 in an IDLE state with no active requests.
+
+### Request Handling
+
+- The user enters a target floor via the keypad.
+- The system determines the direction of movement based on the current and target floors.
+
+### Movement
+
+- The elevator moves step-by-step towards the target floor.
+- The LCD display updates the current floor status in real-time.
+- Push buttons allow manual control if required.
+
+### Reaching the Target
+
+- When the elevator reaches the requested floor, it stops, and the request is cleared.
+- The system resets to IDLE state, waiting for the next input.
+
+This implementation fully integrates hardware and software, demonstrating the automation capabilities of the VSDsquadron Mini processor in embedded applications.
+
+
+
