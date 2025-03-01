@@ -40,9 +40,6 @@ This **Smart Elevator System** is designed to provide multiple ways to control a
 - **Keypad Control:** Users can manually select a floor using the 4×4 keypad.
 - **Real-time Display:** The LCD shows the selected floor and updates the current position.
 
-## Contributing
-
-Feel free to fork this project and contribute! Any enhancements or bug fixes are welcome. 😊
 
 ##
 
