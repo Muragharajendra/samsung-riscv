@@ -1,35 +1,47 @@
-# Smart Elevator Controller Using VSDsquadron Mini
+# 🚀 Smart Elevator System
+
 ## Overview
-Sure! Here’s a simplified version of the smart elevator project using a 16x2 LCD with an I2C interface, a 4x4 keypad, push buttons, and the VSDsquadron Mini board.
 
-### Components Required
-1. *VSDsquadron Mini board*
-2. *16x2 LCD Display with I2C Module*
-3. *4x4 Keypad*
-4. *Breadboard and Jumper Wires*
-5. *USB Cable for Power and Data*
+This **Smart Elevator System** is designed to provide multiple ways to control an elevator, including **voice commands, facial recognition, and a 4×4 keypad** for manual operation. The system seamlessly integrates an **ESP8266 module** with a **VSDSquadron Mini** to process and execute floor selection commands.
 
-### Pin Connections
-#### LCD with I2C Connections
-- *VCC*: Connect to +5V
-- *GND*: Connect to GND
-- *SDA*: Connect to I2C SDA pin (e.g., GPIO PC1)
-- *SCL*: Connect to I2C SCL pin (e.g., GPIO PC2)
+## Features
 
-#### Keypad Connections
-- *Row Pins (R1-R4)*: Connect to GPIO pins D0, D1, D2, D3
-- *Column Pins (C1-C4)*: Connect to GPIO pins D4, D5, D6, D7
+✅ Voice Control – Use speech recognition to select a floor, and the command is sent to the ESP8266 for processing.
 
+✅ Facial Recognition – The system identifies registered users and automatically takes them to their preset floor.
 
-### Simplified Process
+✅ Keypad Control – A 4×4 keypad allows manual floor selection for convenience.
 
-1. *Connect the LCD*:
-   - *Power*: VCC to +5V, GND to GND
-   - *I2C Data*: SDA to PC1, SCL to PC2
+✅ Wi-Fi Communication – The ESP8266 handles all communication, sending the floor selection to the VSDSquadron Mini.
 
-2. *Connect the Keypad*:
-   - *Rows*: R1 to D0, R2 to D1, R3 to D2, R4 to D3
-   - *Columns*: C1 to D4, C2 to D5, C3 to D6, C4 to D7
+✅ LCD Display – Shows real-time status updates like current floor and destination.
 
-3. *Power and Data Connection*:
-   - Connect the VSDsquadron Mini board to the computer using a USB cable for both power and data communication.
+✅ 2-Second Floor Transition Delay – Simulates realistic elevator movement.
+## How It Works
+
+1. **Registration** – Users can register their name and floor number while the system captures their face data.
+2. **Face Recognition** – If a registered user is detected, the system automatically selects their assigned floor.
+3. **Voice Commands** – The user speaks their desired floor number, and the system processes it using speech recognition.
+4. **Keypad Input** – A 4×4 keypad allows users to manually enter the floor number.
+5. **ESP8266 Communication** – The ESP8266 sends the floor selection data to the VSDSquadron Mini.
+6. **Elevator Simulation** – The system displays messages like "Going to Floor X" and updates the current floor in real-time.
+
+## Software & Tools Used
+
+- **VS Code** – For coding and debugging.
+- **PlatformIO (in VS Code)** – For developing and uploading firmware.
+- **Arduino IDE** – For testing ESP8266 communication.
+- **OpenCV & face\_recognition (Python)** – For facial recognition.
+
+## Usage
+
+- **Voice Control:** The system listens for voice commands, extracts the floor number, and sends it to the ESP8266 for execution.
+- **Facial Recognition:** If a known face is detected, the elevator automatically moves to the stored floor.
+- **Keypad Control:** Users can manually select a floor using the 4×4 keypad.
+- **Real-time Display:** The LCD shows the selected floor and updates the current position.
+
+## Contributing
+
+Feel free to fork this project and contribute! Any enhancements or bug fixes are welcome. 😊
+
+##
