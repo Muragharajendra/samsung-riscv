@@ -62,36 +62,9 @@ This task involves performing a functional simulation of a given RISC-V Core Ver
 ###  [Task 5: Smart Elevator Controller Using VSDsquadron Mini](https://github.com/Murghu/samsung-riscv/tree/main/Task%205) 
 
 ## Overview
-The Smart Elevator Controller is an embedded system using the VSDsquadron Mini board to efficiently manage elevator operations. It integrates a 16x2 LCD with I2C, a 4x4 keypad, and push buttons for user input and real-time status display. This project demonstrates the automation potential of RISC-V-based controllers in embedded applications.
+The Smart Elevator System is an advanced solution that allows users to control an elevator using voice commands, facial recognition, and a 4×4 keypad. It integrates an ESP8266 module with a VSDSquadron Mini, enabling seamless floor selection through multiple input methods. The system ensures a smooth and efficient experience with real-time status updates on an LCD display, making elevator operations more intuitive and user-friendly.
 
-## Key Features
--LCD Display for real-time floor and status updates
--4x4 Keypad for floor selection
--Push Buttons for manual control
--I2C Communication for efficient LCD interfacing
--Embedded C Programming for scalable implementation
-
-## Objectives
--Develop an elevator control system using VSDsquadron Mini
--Interface an I2C LCD for status display
--Implement a keypad-based floor selection system
--Ensure smooth elevator movement between floors
--Demonstrate RISC-V-based real-time automation
-
-## Elevator Working Process
-
-**Initialization:** The elevator is initialized at floor 0, with no target and in an IDLE state.
-
-**Request Handling:** A request is made to move to floor 5.The target floor is set to 5.The direction is set to UP because the current floor (0) is less than the target floor (5).
-
-**Movement:**  The elevator moves floor by floor:The direction is UP, so the elevator increments the current floor by 1 in each iteration.
-After each move, the current floor is printed.
-
-**Reaching the Target:** When the elevator reaches floor 5:
-The direction is set to IDLE.
-The request is cleared.
-The final message is printed indicating that the elevator has reached the target floor.
-This simple model effectively demonstrates the fundamental logic behind an elevator controller.
+With features like Wi-Fi communication, automatic floor selection for registered users, and manual keypad input, this system enhances both convenience and accessibility. The speech recognition module processes voice commands, while computer vision detects faces to assign floors automatically. A 2-second floor transition delay simulates realistic movement, creating a practical yet smart elevator experience. 🚀
 
 ###  [Task 6: Smart Elevator Controller Implementation on VSDsquadron Mini](https://github.com/Murghu/samsung-riscv/tree/main/Task%206)
 
