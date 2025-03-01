@@ -1,0 +1,137 @@
+#include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
+
+// WiFi Credentials
+const char* ssid = "SSID";     //Wifi name
+const char* password = "Passward";
+
+// Web Server
+ESP8266WebServer server(80);
+
+// VSDSquadron Mini Serial Communication Pins
+#define VSD_TX D7  // Transmit to VSD
+#define VSD_RX D8  // Receive from VSD
+
+// Elevator Simulation
+int currentFloor = 1;  // Start from Ground Floor
+
+// Hardware Serial for VSD Communication
+HardwareSerial VSDSerial(1);
+
+void moveToFloor(int targetFloor, String name) {
+    if (targetFloor == currentFloor) {
+        Serial.print(" "); Serial.print(name);
+        Serial.print(" -> Already at Floor: ");
+        Serial.println(currentFloor);
+        
+        // Send status to VSDSquadron Mini
+        VSDSerial.print("F");
+        VSDSerial.print(currentFloor);
+        VSDSerial.print(",");
+        VSDSerial.println(name);
+        return;
+    }
+
+    Serial.print("Going to Floor: "); Serial.println(targetFloor);
+
+    // Simulating movement with a 2-second delay per floor
+    while (currentFloor != targetFloor) {
+        if (currentFloor < targetFloor) {
+            currentFloor++;
+        } else {
+            currentFloor--;
+        }
+
+        Serial.print("Present Floor: "); Serial.println(currentFloor);
+        
+        // Send intermediate floor updates to VSDSquadron Mini
+        VSDSerial.print("F");
+        VSDSerial.print(currentFloor);
+        VSDSerial.print(",");
+        VSDSerial.println(name);
+        
+        delay(2000);  // 2-second delay per floor
+    }
+
+    Serial.print("Arrived at Floor: "); Serial.println(currentFloor);
+    
+    // Send final arrival message to VSDSquadron Mini
+    VSDSerial.print("F");
+    VSDSerial.print(currentFloor);
+    VSDSerial.print(",");
+    VSDSerial.println(name);
+}
+
+void handleControl() {
+    if (server.hasArg("name") && server.hasArg("floor")) {
+        String name = server.arg("name");
+        int floor = server.arg("floor").toInt();
+
+        if (floor >= 1 && floor <= 10) {
+            Serial.print("Received via Wi-Fi -> User: ");
+            Serial.print(name);
+            Serial.print(", Going to Floor: ");
+            Serial.println(floor);
+
+            moveToFloor(floor, name);
+            server.send(200, "text/plain", "Elevator moving to floor " + String(floor));
+        } else {
+            server.send(400, "text/plain", "Invalid floor number");
+        }
+    } else {
+        server.send(400, "text/plain", "Missing parameters");
+    }
+}
+
+void setup() {
+    Serial.begin(115200);
+    VSDSerial.begin(115200, SERIAL_8N1, VSD_RX, VSD_TX);
+    
+    WiFi.begin(ssid, password);
+    Serial.print("Connecting to WiFi...");
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+    }
+    Serial.println("\nConnected to WiFi!");
+    Serial.print("IP Address: ");
+    Serial.println(WiFi.localIP());
+
+    server.on("/control", handleControl);
+    server.begin();
+    Serial.println("Server started.");
+    Serial.println("Waiting for PC input...");
+}
+
+void loop() {
+    server.handleClient();
+
+    // Check if data is available from the PC via Serial
+    if (Serial.available()) {
+        String receivedData = Serial.readStringUntil('\n');
+        receivedData.trim();
+
+        if (receivedData.startsWith("F")) {
+            int commaIndex = receivedData.indexOf(",");
+            if (commaIndex > 1) {
+                int floor = receivedData.substring(1, commaIndex).toInt();
+                String name = receivedData.substring(commaIndex + 1);
+
+                if (floor >= 1 && floor <= 10) {
+                    Serial.print("Received via PC -> User: ");
+                    Serial.print(name);
+                    Serial.print(", Going to Floor: ");
+                    Serial.println(floor);
+
+                    moveToFloor(floor, name);
+                } else {
+                    Serial.println("Error: Invalid floor number received from PC.");
+                }
+            } else {
+                Serial.println("Error: Invalid format. Expected format: F<floor>,<name>");
+            }
+        } else {
+            Serial.println("Error: Unrecognized command from PC.");
+        }
+    }
+}
